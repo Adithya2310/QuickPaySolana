@@ -15,9 +15,9 @@ import { useCashApp } from '../hooks/CashApp'
 
 const Home = () => {
     const { connected, publicKey, avatar, userAddress, transactions, newTransactionModalOpen, setNewTransactionModalOpen } = useCashApp();
-    const [transactionQRModalOpen, setTransactionQRModalOpen] = useState(false)
+    const [transactionQRModalOpen, setTransactionQRModalOpen] = useState(false);
+    const [qrCode,setQrCode]=useState(false);
     // const [newTransactionModalOpen, setNewTransactionModalOpen] = useState(false);   
-
     // console.log(connected, "WE ARE CONNECTED", publicKey.toString());
 
 
@@ -25,7 +25,7 @@ const Home = () => {
         <div className="flex min-h-screen ">
             <header className="flex w-[250px] flex-col bg-[#0bb534] p-12">
                 <Profile setModalOpen={setTransactionQRModalOpen} avatar={avatar} userAddress={userAddress} />
-                <TransactionQRModal modalOpen={transactionQRModalOpen} setModalOpen={setTransactionQRModalOpen} userAddress={userAddress} myKey={publicKey} />
+                <TransactionQRModal modalOpen={transactionQRModalOpen} setModalOpen={setTransactionQRModalOpen} userAddress={userAddress} setQrCode={setQrCode} myKey={publicKey} />
 
                 <NavMenu connected={connected} publicKey={publicKey} />
 

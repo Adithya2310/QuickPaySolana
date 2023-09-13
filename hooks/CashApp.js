@@ -19,7 +19,7 @@ export const useCashApp=()=>{
         return [value,setValue];
     }
 
-    const [userAddress,setUserAddress]=useState("Connect");
+    const [userAddress,setUserAddress]=useState("Connect");//11111111111111111111111111111111
     const [avatar,setAvatar]=useState("");
     const [amount,setAmount]=useState();
     const [receiver,setReceiver]=useState("");
@@ -27,7 +27,7 @@ export const useCashApp=()=>{
     // to store all the transactions
     const [transactions,setTransactions]=useLocalStorage("transaction",[]);
     const [newTransactionModalOpen, setNewTransactionModalOpen] = useState(false);
-
+    const [publicKeySet,setPublicKeySet]=useState(false);
 
     const {connected,publicKey,sendTransaction}=useWallet();
     const {connection}=useConnection();
@@ -40,6 +40,7 @@ export const useCashApp=()=>{
             // Get Avatar based on the userAddress
             setAvatar(getAvatarUrl(publicKey.toString()));
             setUserAddress(publicKey.toString());
+            setPublicKeySet(true);
         }
     },[connected]);
 
@@ -109,6 +110,7 @@ export const useCashApp=()=>{
         
     return {
         connected,
+        publicKeySet,
         publicKey,
         avatar,
         userAddress,
@@ -122,6 +124,6 @@ export const useCashApp=()=>{
         newTransactionModalOpen,
         setNewTransactionModalOpen,
         transactions,
-        setTransactions
+        setTransactions,
     };
 }
